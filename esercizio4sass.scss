@@ -1,0 +1,51 @@
+@use 'variabili' as v;
+@use 'funzione' as f;
+
+@mixin article-card($color, $border-color, $font-size, $padding) {
+    color: $color;
+    border: $border-color;
+    font-size: $font-size;
+    padding: $padding;
+}
+
+%text {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    @include article-card(v.$color-tertiary, none, 1rem, f.conv(10));
+    text-decoration: underline v.$color-secondary;
+    font-weight: bold;
+}
+
+.container {
+    border: f.conv(1) solid v.$color-primary ;
+}
+
+h1 {
+    @extend %text;
+}
+h2{
+    @extend %text;
+    padding: 1rem;
+    border: 1px solid red;
+    width: 15%;
+    margin-left: 42.5%;
+}
+.flex {
+    display: flex;
+    flex-direction: row;
+    padding: f.conv(10);
+
+    & .a {
+        @include article-card(v.$color-secondary, f.conv(1) solid v.$color-tertiary, 1rem, f.conv(10));
+    }
+
+    & .b {
+        @include article-card(v.$color-primary, f.conv(1) solid v.$color-tertiary, 1rem, f.conv(10));
+    }
+}
+
+.footer {
+    @include article-card(v.$color-tertiary, f.conv(1) solid v.$color-secondary, f.conv(24), f.conv(30));
+    margin: f.conv(10);
+}
